@@ -5,7 +5,6 @@ import com.agung.parking_lot.command.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,14 +16,18 @@ public class ParkingLotApp {
 
     private static Map<String, Command> availableCommands;
 
+    public static FileHelper fileHelper;
+
     public static void main(String[] args) {
         init();
 
         if (args.length > 0) {
             try {
-                Files.lines(FileSystems.getDefault().getPath(args[1])).forEach(ParkingLotApp::processInput);
+                Files.lines(fileHelper.getFileAsPath(args[0])).forEach(ParkingLotApp::processInput);
             } catch (IOException e) {
             }
+
+            return;
         }
 
         while (applicationContext.appRun) {
@@ -39,11 +42,15 @@ public class ParkingLotApp {
     private static void processInput(String inputLine) {
         String[] input = inputLine.split(" ");
         if (input.length > 0)
-            availableCommands.get(input[0]).execute(applicationContext, Arrays.copyOfRange(input, 0, input.length));
+            availableCommands.get(input[0]).execute(applicationContext, Arrays.copyOfRange(input, 1, input.length));
     }
 
     private static void init() {
-        applicationContext = new ApplicationContext();
+        if (applicationContext == null)
+            applicationContext = new ApplicationContext();
+
+        if (fileHelper == null)
+            fileHelper = new FileHelper();
 
         availableCommands = new HashMap<>();
         Command c = new Exit();
