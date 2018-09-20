@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+./gradlew test
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+
+./gradlew build
+if [ $? -ne 0 ]; then
+    exit 1
+fi

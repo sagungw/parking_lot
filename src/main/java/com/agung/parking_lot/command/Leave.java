@@ -12,7 +12,7 @@ public class Leave implements Command {
 
     @Override
     public void execute(ApplicationContext applicationContext, String... args) {
-        if (args.length < 1)
+        if (args.length < 1 || applicationContext.parkingLot == null)
             return;
 
         try {

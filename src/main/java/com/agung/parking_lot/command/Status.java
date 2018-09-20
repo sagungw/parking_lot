@@ -11,6 +11,12 @@ public class Status implements Command {
 
     @Override
     public void execute(ApplicationContext applicationContext, String... args) {
+        if (applicationContext.parkingLot == null)
+            return;
+
+        if (applicationContext.parkingLot.size() < 1)
+            return;
+
         String format = "%-12s%-19s%-6s\n";
         System.out.printf(format, "Slot No.", "Registration No", "Colour");
         applicationContext.parkingLot.forEach(s -> {

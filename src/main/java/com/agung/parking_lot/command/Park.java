@@ -13,7 +13,7 @@ public class Park implements Command {
 
     @Override
     public void execute(ApplicationContext applicationContext, String... args) {
-        if (args.length < 2)
+        if (args.length < 2 || applicationContext.parkingLot == null)
             return;
 
         ParkingSlot slot = applicationContext.parkingLot.stream().filter(p -> p.getCar() == null).findFirst().orElse(null);

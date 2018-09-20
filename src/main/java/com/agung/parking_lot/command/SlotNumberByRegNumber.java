@@ -13,7 +13,7 @@ public class SlotNumberByRegNumber implements Command {
 
     @Override
     public void execute(ApplicationContext applicationContext, String... args) {
-        if (args.length < 1)
+        if (args.length < 1 || applicationContext.parkingLot == null)
             return;
 
         ParkingSlot slot = applicationContext.parkingLot.stream().filter(s -> {

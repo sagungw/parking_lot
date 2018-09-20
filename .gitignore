@@ -1,3 +1,5 @@
 .gradle
 build
 out
+functional_spec
+bin/run_functional_tests
