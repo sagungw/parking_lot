@@ -13,6 +13,7 @@ import java.io.PrintStream;
 public class FileTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
     private final PrintStream originalOut = System.out;
 
     @Before
