@@ -20,7 +20,7 @@ public class Init implements Command {
         try {
             applicationContext.parkingLot = new ArrayList<>();
             for (int i = 0; i < Integer.valueOf(args[0]); i++)
-                applicationContext.parkingLot.add(new ParkingSlot(i));
+                applicationContext.parkingLot.add(new ParkingSlot(i + 1));
 
             System.out.println("Created a parking lot with " + args[0] + " slots");
         } catch (NumberFormatException e) {

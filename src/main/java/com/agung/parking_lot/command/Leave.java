@@ -6,7 +6,7 @@ public class Leave implements Command {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "leave";
     }
 
     @Override
@@ -15,7 +15,7 @@ public class Leave implements Command {
             return;
 
         try {
-            applicationContext.parkingLot.get(Integer.valueOf(args[0])).setCar(null);
+            applicationContext.parkingLot.get(Integer.valueOf(args[0]) - 1).setCar(null);
 
             System.out.println("Slot number " + args[0] + " is free");
         } catch (NumberFormatException e) {
